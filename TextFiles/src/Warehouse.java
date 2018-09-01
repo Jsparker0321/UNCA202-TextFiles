@@ -11,23 +11,22 @@ import java.io.BufferedWriter;
 public class Warehouse {
 
 	public Warehouse() {
-		ArrayList<InventoryItem> wh = new ArrayList<InventoryItem>();
 		
+		ArrayList<InventoryItem> WarehouseItem = new ArrayList<InventoryItem>();
+
+	
 	}
 
-	public void readInventoryFile( ArrayList<InventoryItem>() ) {
+	public void readInventoryFile( ) throws FileNotFoundException {
 		
-		
-		
-		
-		File inputFileName = new File("input.txt");
-		Scanner input = new Scanner(inputFileName);
-		
-		ArrayList<InventoryItem> wh = new ArrayList<InventoryItem>();
-		while ( input.hasNextLine()) {
-			wh.add(input.nextLine());
-			wh.add(input.nextInt());
-			wh.add(input.nextDouble());
+		Scanner input = new Scanner(new File("input.txt"));
+		ArrayList<InventoryItem> WarehouseItem = new ArrayList<InventoryItem>();
+		while ( input.hasNext()) {
+			
+			WarehouseItem.add(input.next());
+			WarehouseItem.add(input.nextInt());
+			WarehouseItem.add(input.nextDouble()); 
+			
 			
 		}
 		input.close();
@@ -35,17 +34,15 @@ public class Warehouse {
 		
 	}
 
-	public void writeOutputFile(ArrayList<InventoryItem> wh ) {
+
+	public void writeOutputFile(ArrayList<InventoryItem> WarehouseItem ) throws FileNotFoundException {
 		
-		Scanner scan = new Scanner(System.in);
-		System.out.print("Name your output file: ");
-		String file = scan.nextLine();
 		
-		FileWriter fw = new FileWriter(file);
-		BufferedWriter bw = new BufferedWriter(fw);
-		PrintWriter myOutput = new PrintWriter(bw);
+		PrintWriter myOutput = new PrintWriter("output.txt");
+		myOutput.println("Today's Stock: ");
+		myOutput.close();
 		
-		for(InventoryItem item : wh ) {
+		for(InventoryItem item : WarehouseItem ) {
 			System.out.println(item.getSku());
 			System.out.println(item.getDisc());
 			System.out.println(item.getPrice());
