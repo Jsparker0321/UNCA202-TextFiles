@@ -10,28 +10,24 @@ import java.io.BufferedWriter;
 
 public class Warehouse {
 
-	public Warehouse() {
+	private ArrayList<InventoryItem> WarehouseItem;
+	
+	public Warehouse(InventoryItem item) {
 		
-		ArrayList<InventoryItem> WarehouseItem = new ArrayList<InventoryItem>();
-
+		WarehouseItem = new ArrayList<InventoryItem>();
+		
+		
+		
 	
 	}
 
-	public void readInventoryFile( ) throws FileNotFoundException {
+	public void readInventoryFile(InventoryItem item ) throws FileNotFoundException {
 		
-		Scanner input = new Scanner(new File("input.txt"));
-		ArrayList<InventoryItem> WarehouseItem = new ArrayList<InventoryItem>();
-		while ( input.hasNext()) {
-			
-			WarehouseItem.add(input.next());
-			WarehouseItem.add(input.nextInt());
-			WarehouseItem.add(input.nextDouble()); 
-			
-			
-		}
-		input.close();
+		Scanner scan = new Scanner("input.txt");
+		while(scan.hasNextLine()) {
+			WarehouseItem.add(item);
 
-		
+		}
 	}
 
 
@@ -40,7 +36,7 @@ public class Warehouse {
 		
 		PrintWriter myOutput = new PrintWriter("output.txt");
 		myOutput.println("Today's Stock: ");
-		myOutput.close();
+		
 		
 		for(InventoryItem item : WarehouseItem ) {
 			System.out.println(item.getSku());
@@ -49,6 +45,7 @@ public class Warehouse {
 			System.out.println(item.getAmount());
 		}
 		
+		myOutput.close();
 	}
 
 }
